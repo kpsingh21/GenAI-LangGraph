@@ -63,7 +63,12 @@ chatbot = graph.compile(checkpointer=checkpointer)
 
 
 
+# how to load previous conversession from thread id
+config = { 'configurable': {'thread_id': 1}}
+response = chatbot.invoke(
+    {'messages': [HumanMessage(content='what is the recipe to make pasta')]},
+    config=config
+)
 
 
-
-
+print(chatbot.get_state(config=config).values)
