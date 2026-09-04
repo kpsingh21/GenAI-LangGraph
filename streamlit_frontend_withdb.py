@@ -97,7 +97,17 @@ if user_input:
     
     # this is code with streaming
 
-    config = { 'configurable': {'thread_id': st.session_state['thread_id'] }}
+
+    #without thread id config in langsmith langsmith so all the results in one dashboard no seperate config for  
+    # config = { 'configurable': {'thread_id': st.session_state['thread_id'] }}
+    # will add thread id in metadata
+    config = { 'configurable': {'thread_id': st.session_state['thread_id']},
+                'metadata':{
+                    'thread_id':st.session_state['thread_id']
+                },
+                'run_name': 'chat'
+    }
+
 
     with st.chat_message('assistant'):
        ai_msg= st.write_stream(
